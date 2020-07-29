@@ -1,9 +1,10 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 
 class Profesor(models.Model):
-    #id_profesor =models.
+    #id_profesor = models.
     nombre = models.CharField(max_length=120)
     apellido = models.CharField(max_length=120)
     rut=models.CharField(max_length=20)
@@ -95,3 +96,17 @@ class Lista(models.Model):
 
     def __str__(self):
         return self.nrc
+
+class Lectura(models.Model):
+    rut=models.CharField(max_length=20)
+    nrc=models.CharField(max_length=20)
+    usuario=models.CharField(max_length=20)
+    year=models.IntegerField(null=True, blank=True)
+    mes=models.IntegerField(null=True, blank=True)
+    dia=models.IntegerField(null=True, blank=True)
+    id_ejercicio=models.CharField(max_length=100)
+    problema=models.CharField(max_length=50)
+    puntaje=models.FloatField(null=True, blank=True)
+
+    def __str__(self):
+        return self.rut

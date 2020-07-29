@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+ 
+
 
 # Create your views here.
 def dashboard_home(request):
@@ -7,3 +9,4 @@ def dashboard_home(request):
 
 def dashboard_estudiante(request):
     return HttpResponse("<h1>dashboard estudiante</h1>")
+
