@@ -128,3 +128,5 @@ GitHub.sublime-settings
 
 /Scripts
 /lib
+pyvenv.cfg
+db.sqlite3
