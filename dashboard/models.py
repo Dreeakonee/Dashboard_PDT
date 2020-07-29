@@ -43,18 +43,18 @@ class Seccion(models.Model):
 
 class TablonEjercicios(models.Model):
     #correlativo=models.IntegerField()
-    rut=models.CharField(max_length=20)
-    nrc=models.CharField(max_length=20)
-    email = models.EmailField(default="sinejemplo@hotmail.com")
-    dia=models.CharField(max_length=20)
-    mes=models.CharField(max_length=20)
-    año=models.CharField(max_length=20)
-    idEjercicio=models.CharField(max_length=20)
-    nombreProblema=models.CharField(max_length=20)
-    puntaje=models.DecimalField(decimal_places=3, max_digits=20)
+    rut=models.CharField(max_length=20, blank=True, null=True)
+    nrc=models.CharField(max_length=20, blank=True, null=True)
+    email = models.EmailField(default="sinejemplo@hotmail.com", blank=True, null=True)
+    dia=models.CharField(max_length=20, blank=True, null=True)
+    mes=models.CharField(max_length=20, blank=True, null=True)
+    año=models.CharField(max_length=20, blank=True, null=True)
+    idEjercicio=models.CharField(max_length=20, blank=True, null=True)
+    nombreProblema=models.CharField(max_length=20, blank=True, null=True)
+    puntaje=models.DecimalField(decimal_places=3, blank=True, null=True,max_digits=20)
 
     def __str__(self):
-        return self.nombreProblema
+        return str(self.nombreProblema)
 
 
 

@@ -18,11 +18,9 @@ from django.urls import path, re_path, include
 
 from . import urls
 from django.conf.urls import url
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     #url(r'^dashboard/$',"dashboard.views.dashoboard_home"),
     #path('dashboard/',views.dashoboard_home),
     path('dashboard/', include('dashboard.urls')),
-    
 ]

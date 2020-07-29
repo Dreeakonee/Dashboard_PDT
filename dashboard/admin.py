@@ -1,10 +1,14 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 
 from .models import Profesor
 from .models import Estudiante
 from .models import Seccion
+from .models import TablonEjercicios
 # Register your models here.
-
+@admin.register(TablonEjercicios)
+class AdminTablon(ImportExportModelAdmin):
+    pass
 
 class AdminProfesor(admin.ModelAdmin):
     list_display = ["nombre", "apellido", "rut", "email", "updated", "timestamp"]
@@ -32,7 +36,6 @@ class AdminSeccion(admin.ModelAdmin):
     search_fields = ["nrc", "semestre", "codigo_curso"]
     class Meta:
         model = Seccion
-
 
 
 admin.site.register(Profesor,AdminProfesor)#,AdminProfesor
