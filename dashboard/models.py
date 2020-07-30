@@ -42,7 +42,7 @@ class Seccion(models.Model):
 
 
 
-class TablonEjercicios(models.Model):
+"""class TablonEjercicios(models.Model):
     #correlativo=models.IntegerField()
     rut=models.CharField(max_length=20)
     nrc=models.CharField(max_length=20)
@@ -55,7 +55,7 @@ class TablonEjercicios(models.Model):
     puntaje=models.DecimalField(decimal_places=3, max_digits=20)
 
     def __str__(self):
-        return self.nombreProblema
+        return self.nombreProblema"""
 
 
 
@@ -97,7 +97,7 @@ class Lista(models.Model):
     def __str__(self):
         return self.nrc
 
-class Lectura(models.Model):
+class TablonEjercicios(models.Model):
     rut=models.CharField(max_length=20)
     nrc=models.CharField(max_length=20)
     usuario=models.CharField(max_length=20)

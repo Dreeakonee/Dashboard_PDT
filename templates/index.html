@@ -1,0 +1,31 @@
+<body>
+
+    <!--<form action="/" method="POST">
+        Rut: 
+        <input type="number" name="rut" value="0" style="width:40px" / >
+        <input type="submit" value="Filtrar">
+        {% csrf_token %}
+    </form>-->
+
+    <h2>Lista de personas</h2>
+
+    <ul>
+    {% for estudiante in estudiantes %}
+    	<li>{{estudiante.rut}},
+        {{estudiante.nrc}}, 
+        {{estudiante.usuario}},
+        {{estudiante.year}},
+        {{estudiante.mes}},
+        {{estudiante.dia}},
+        {{estudiante.id_ejercicio}},
+        {{estudiante.problema}},
+        {{estudiante.puntaje}}
+        </li>
+    {% endfor %}
+    </ul>
+
+    
+
+
+
+</body>
