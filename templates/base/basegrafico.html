@@ -1,0 +1,169 @@
+{%load staticfiles%}
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+    <title>{% block title %} Grafico de skills {% endblock %} </title>
+</head>
+<body>
+<div class="container">
+
+    {% block navbar %}
+    <div class="bs-docs-section clearfix">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-component">
+                 <nav class="navbar navbar-default">
+                     <div class="container-fluid">
+                        <div class="navbar-header">
+                          <a class="navbar-brand" href="#">Home</a>
+                        </div>
+                       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                         <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estudiante <span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                               <li><a href="{#}">Mis estadisticas</a></li>
+                               <li><a href="{url 'alumnoestadisticas/'}">Mis ejercicios</a></li>
+                              </ul>
+                            </li>
+                             <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profesor<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                 <li><a href="{url 'Egenerales/'}">Lista de curso</a></li>
+                                 <li><a href="{url 'listaejercicios/'}">Informacion de ejercicios</a></li>
+                                 <li><a href="{#}">Estadisticas de curso</a></li>
+                                 <li><a href="{#}">Estadisticas sobre ejercicios</a></li>
+                              </ul>
+                             </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Coordinador <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                <li><a href="{#}">Estadisticas de sede</a></li>
+                                <li><a href="{url 'lista/'}">Tablon de ejercicios</a></li>
+                                <li><a href="{#}">Cargar datos a plataforma</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                         <ul class="nav navbar-nav navbar-right">
+                             <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{user.username}}<span class="caret"></span></a>
+                              <ul class="dropdown-menu" role="menu">
+                                 <li><a href="{#}">Mi perfil</a></li>
+                                 <li><a href="{#}">Cerrar sesión</a></li>
+                              </ul>
+                            </li>
+                         </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+              </div>
+          </div>
+      </div>
+
+   {% endblock %}
+
+   <head>
+    <title>Esto es un grafico</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="5" height ="5"></canvas>
+
+{% block scripts %}
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'radar',
+data: {
+    labels: ['Recursividad', 'estructuras simples', 'ejercicios simples','estructuras combinadas'],
+    datasets: [
+      {
+        label: 'Tus estadisticas',
+        backgroundColor: [
+            'rgba(252, 62, 15, 0.2)',],
+        borderWidth: 5,
+        borderColor:[
+        'rgba(252, 62, 15, 0.2)',],
+        data: [12, 19, 3,12],
+    } ,  {
+        label: 'Promedio del curso',
+        backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',],
+        borderWidth: 5,
+        borderColor:[
+        'rgba(54, 162, 235, 0.2)',],
+        data: [5, 11, 20,35],
+    }
+    ]
+},
+options: {
+  responsive: true,
+  maintainAspectRatio: false,
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
+}
+});
+
+</script>
+{% endblock scripts %}
+
+ 
+   {% block content %}
+   <table class ="table table=bordered">
+    <tbody>
+        <tr>
+            <td>Usuario plataforma = <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <td>Nombre = <td>{{user.first_name}}</td>
+        </tr>
+        <tr>
+            <td>Apellido = <td>{{user.last_name}}</td>
+        </tr>
+        <tr>
+            <td>Rut = <td>18.965.573-k</td>
+        </tr>
+        <tr>
+            <td>NRC = <td>2020</td>
+        </tr>
+        <tr>
+            <td>Sede = <td>Santiago</td>
+        </tr>
+        <tr>
+            <td>Carrera = <td>Ingenieria civil informatica</td>
+        </tr>
+        <tr>
+            <td>Jornada = <td>Diurno</td>
+        </tr>        
+
+    </tbody>
+   {% endblock content %}
+ 
+
+  </body>
+</html>

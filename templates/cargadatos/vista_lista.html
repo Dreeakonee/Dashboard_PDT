@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% block footer%}
+
+
+<table class ="table table=bordered">
+    <thead>
+        <tr>
+            <td>nrc</td>
+            <td>UsuarioUnab</td>
+            <td>notas</td>
+            <td>estado</td>
+        </tr>
+    </thead>
+    <tbody>
+         {% if object_list %}
+         {% for vista in object_list %}
+        <tr>
+            <td>{{vista.nrc}}</td>
+            <td>{{vista.UsuarioUnab}}</td>
+            <td>{{vista.notas}}</td>
+            <td>{{vista.estado}}</td>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros </h1>
+
+        {% endif %}
+        </tbody>
+        
+</table>
+{% endblock %}

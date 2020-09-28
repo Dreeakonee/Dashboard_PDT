@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% block footer%}
+
+
+<table class ="table table=bordered">
+    <thead>
+        <tr>
+            <td>IdEjercicio</td>
+            <td>NombreProblema</td>
+            <td>Skill1</td>
+            <td>Skill2</td>
+            <td>Skill3</td>
+            <td>Skill4</td>
+            <td>knowledge1</td>
+            <td>knowledge2</td>
+            <td>knowledge3</td>
+            <td>knowledge4</td>
+            <td>complejidad</td>
+            <td>hito</td>
+        </tr>
+    </thead>
+    <tbody>
+         {% if object_list %}
+         {% for vista in object_list %}
+        <tr>
+            <td>Ejercicios.IdEjercicio</td>
+            <td>Ejercicios.NombreProblema</td>
+            <td>Ejercicios.Skill1</td>
+            <td>Ejercicios.Skill2</td>
+            <td>Ejercicios.Skill3</td>
+            <td>Ejercicios.Skill4</td>
+            <td>Ejercicios.knowledge1</td>
+            <td>Ejercicios.knowledge2</td>
+            <td>Ejercicios.knowledge3</td>
+            <td>Ejercicios.knowledge4</td>
+            <td>Ejercicios.complejidad</td>
+            <td>Ejercicios.hito</td>  
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros </h1>
+
+        {% endif %}
+        </tbody>
+        
+</table>
+{% endblock %}
