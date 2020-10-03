@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'home/', include ('cargadatos.urls')),
     path('', auth_views.LoginView.as_view(), name='login'),
     
+    
 ]

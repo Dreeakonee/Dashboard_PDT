@@ -60,7 +60,6 @@ class Ejercicios(models.Model):
     def __str__(self):
         return self.NombreProblema
 
-
 class TablonEjercicios(models.Model):
     rut=models.ForeignKey(Estudiante,null=True,on_delete=models.CASCADE)
     dia=models.CharField(max_length=20)
@@ -71,4 +70,3 @@ class TablonEjercicios(models.Model):
     def __str__(self):
         return str(self.rut)
 
-    

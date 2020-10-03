@@ -42,5 +42,3 @@ class vista_grafico(TemplateView):
     template_name = 'cargadatos/grafico.html'
 
 
-
-
