@@ -4,8 +4,6 @@ from django.views.generic import TemplateView #,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import TablonEjercicios,Lista,Ejercicios
 from django.db.models import Sum
-from rest_framework.views import APIView
-from rest_framework.response import Response
 
 # ALUMNO
 def inicioview(request):
@@ -71,5 +69,4 @@ def grafico_datos(request):
         'data': data,
         'data2': data2,
     },)
-    #return render(request, 'cargadatos/grafico-datos.html')
-
+    

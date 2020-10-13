@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -37,28 +37,45 @@
                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                          <ul class="nav navbar-nav">
                             <li class="dropdown">
+                              {% if perms.cargadatos.view_estudiante %}
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estudiante <span class="caret"></span></a>
                               <ul class="dropdown-menu" role="menu">
-                               <li><a href="{url 'estudiante/misestadisticas/'}">Mis estadisticas</a></li>
-                               <li><a href="{url 'estudiante/misejercicios/'}">Mis ejercicios</a></li>
+                                {% if perms.cargadatos.view_ejercicios %}
+                                <li><a href="{url 'estudiante/misestadisticas/'}">Mis estadisticas</a></li>
+                                {% endif %}
+                                {% if perms.cargadatos.view_tablonejercicios %}
+                                <li><a href="{url 'estudiante/misejercicios/'}">Mis ejercicios</a></li>
+                                {% endif %}
                               </ul>
+                              {% endif %}
                             </li>
                              <li class="dropdown">
+                              {% if perms.cargadatos.view_profesor %}
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profesor<span class="caret"></span></a>
                               <ul class="dropdown-menu" role="menu">
+                                 {% if perms.cargadatos.view_lista %}
                                  <li><a href="{url 'profesor/listacurso'}">Lista de curso</a></li>
+                                 {% endif %}
+                                 {% if perms.cargadatos.view_ejercicios %}
                                  <li><a href="{url 'profesor/informacionejercicios'}">Informacion de ejercicios</a></li>
+                                 {% endif %}
                                  <li><a href="{profesor/estadisticascursos}">Estadisticas de curso</a></li>
+                                 
                                  <li><a href="{url 'profesor/estadisticasejercicios/'}">Estadisticas sobre ejercicios</a></li>
                               </ul>
+                              {% endif %}
                              </li>
                             <li class="dropdown">
+                                {% if user.is_staff %}
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Coordinador <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                 <li><a href="{#}">Estadisticas de sede</a></li>
+                                {% if perms.cargadatos.view_tablonejercicios %}
                                 <li><a href="{url 'lista/'}">Tablon de ejercicios</a></li>
+                                {% endif %}
                                 <li><a href="{#}">Cargar datos a plataforma</a></li>
                                 </ul>
+                                {% endif %}
                             </li>
                         </ul>
                          <ul class="nav navbar-nav navbar-right">
@@ -71,6 +88,9 @@
                             </li>
                          </ul>
                         </div>
+                        <!--{{ perms.cargadatos.view_estudiante }}
+                        {{ perms.cargadatos.view_profesor }}
+                        {{ perms.cargadatos.view_coordinador }}-->
                     </div>
                 </nav>
             </div>
