@@ -1,12 +1,11 @@
 {% extends 'base/basee.html' %}
 
-{% block content%}
+{% block content %}
 
 
 <table class ="table table=bordered">
     <thead>
         <tr>
-            <td>#</td>
             <td>UsuarioUnab</td>
             <td>dia</td>
             <td>mes</td>
@@ -17,16 +16,14 @@
     </thead>
     <tbody>
          {% if object_list %}
-         {% for tablon in object_list %}
+         {% for vista in object_list %}
         <tr>
-            <td>{{tablon.id}}</td>
-            <td>{{tablon.UsuarioUnab}}</td>
-            <td>{{tablon.dia}}</td>
-            <td>{{tablon.mes}}</td>
-            <td>{{tablon.año}}</td>
-            <td>{{tablon.IdEjercicio}}</td>
-            <td>{{tablon.Puntaje}}</td>           
-        </tr>
+            <td>{{vista.UsuarioUnab}}</td>
+            <td>{{vista.dia}}</td>
+            <td>{{vista.mes}}</td>
+            <td>{{vista.año}}</td>
+            <td>{{vista.IdEjercicio}}</td>
+            <td>{{vista.Puntaje}}</td>    
         {% endfor %}
 
         {% else %}

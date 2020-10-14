@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cargadatos',
-    'rest_framework',
 ]
 
 REST_FRAMEWORK = {
@@ -111,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -130,4 +129,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 
 LOGIN_REDIRECT_URL = 'home/'
-LOGOUT_REDIRECT_URL= '/'
+LOGOUT_REDIRECT_URL= '^$'
