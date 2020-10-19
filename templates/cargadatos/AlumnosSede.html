@@ -6,27 +6,25 @@
 <table class ="table table=bordered">
     <thead>
         <tr>
-            <td>#</td>
             <td>UsuarioUnab</td>
-            <td>dia</td>
-            <td>mes</td>
-            <td>año</td>
-            <td>IdEjercicio</td>
-            <td>Puntaje</td>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>Sede</td>
+            <td>Carrera</td>
+            <td>Jornada</td>
         </tr>
     </thead>
     <tbody>
          {% if object_list %}
          {% for tablon in object_list %}
         <tr>
-            <td>{{tablon.id}}</td>
             <td>{{tablon.UsuarioUnab}}</td>
-            <td>{{tablon.dia}}</td>
-            <td>{{tablon.mes}}</td>
-            <td>{{tablon.año}}</td>
-            <td>{{tablon.IdEjercicio}}</td>
-            <td>{{tablon.Puntaje}}</td>           
-        </tr>
+            <td>{{tablon.nombre}}</td>
+            <td>{{tablon.apellido}}</td>
+            <td>{{tablon.sede}}</td>
+            <td>{{tablon.carrera}}</td>
+            <td>{{tablon.jornada}}</td>
+            
         {% endfor %}
 
         {% else %}

@@ -1,11 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.generic import TemplateView #,ListView
+from django.views.generic import TemplateView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import TablonEjercicios,Lista,Ejercicios
+from .models import TablonEjercicios,Lista,Ejercicios,Estudiante
 from django.db.models import Sum
-from rest_framework.views import APIView
-from rest_framework.response import Response
 
 # ALUMNO
 def inicioview(request):
@@ -15,17 +13,22 @@ class estudiante_misestadistivasView(LoginRequiredMixin,TemplateView):
     template_name = "cargadatos/misestadisticas.html"
 
 
-class estudiante_lista_tablonView(TemplateView):
-    template_name = 'cargadatos/TablonEjercicios.html'
+#Vista Alumno sus ejercicios desarrollados 
+class estudiante_vistaejercicios(LoginRequiredMixin,ListView):
+    model= TablonEjercicios
+    queryset= TablonEjercicios.objects.all()
+    template_name = 'cargadatos/vista_ejercicios_alumnos.html'
 
 #PROFESOR
-class profesor_lista_cursoView(LoginRequiredMixin,TemplateView):
-    model= Lista
-    queryset= Lista.objects.filter(nrc=2020)
-    template_name = 'cargadatos/listacurso.html'
+class profesor_lista_cursoView(LoginRequiredMixin,ListView):
+    model=Lista
+    queryset = Lista.objects.filter(nrc = 9139)
+    template_name = 'cargadatos/vista_lista.html'
 
-class profesor_informacion_ejerciciosView(LoginRequiredMixin,TemplateView):
-    template_name = 'cargadatos/infoejercicios.html'
+
+class profesor_informacion_ejerciciosView(LoginRequiredMixin,ListView):
+    model= Ejercicios
+    template_name = 'cargadatos/listado_ejercicios.html'
 
 class profesor_estadisticas_cursosView(LoginRequiredMixin,TemplateView):
     #queryset= TablonEjercicios.objects.filter(UsuarioUnab='nico')
@@ -37,10 +40,24 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #context["qs"] = TablonEjercicios.objects.all()
-        context["qs"] = TablonEjercicios.objects.filter(IdEjercicio='1')
-        context["qs2"] = TablonEjercicios.objects.filter(IdEjercicio='3')
+        context["qs"] = TablonEjercicios.objects.filter(IdEjercicio='11')
+        context["qs2"] = TablonEjercicios.objects.filter(IdEjercicio='16')
         return context
 
+#VistaCoordinador Todos los alumnos de una sede 
+class alumnos_sede(LoginRequiredMixin,ListView):
+    model = Estudiante
+    queryset = Estudiante.objects.filter(sede = 'Antonio Varas')
+    template_name = 'cargadatos/AlumnosSede.html'
+
+
+#VistaCoordinador Todos los ejercicios de plataforma
+class lista_tablon(LoginRequiredMixin,ListView):
+    model = TablonEjercicios
+    queryset = TablonEjercicios.objects.all()
+    template_name = 'cargadatos/TablonEjercicios.html'
+
+        
 """class vistaGraficosView(LoginRequiredMixin,TemplateView):
     
     def get(self, request, **kwargs):
@@ -71,5 +88,4 @@ def grafico_datos(request):
         'data': data,
         'data2': data2,
     },)
-    #return render(request, 'cargadatos/grafico-datos.html')
-
+    

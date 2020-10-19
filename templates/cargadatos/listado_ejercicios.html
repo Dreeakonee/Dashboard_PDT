@@ -1,0 +1,48 @@
+{% extends 'base/basee.html' %}
+
+{% block content%}
+
+
+<table class ="table table=bordered">
+    <thead>
+        <tr>
+            <td>IdEjercicio</td>
+            <td>NombreProblema</td>
+            <td>skill1</td>
+            <td>Skill2</td>
+            <td>Skill3</td>
+            <td>Skill4</td>
+            <td>knowledge1</td>
+            <td>knowledge2</td>
+            <td>knowledge3</td>
+            <td>knowledge4</td>
+            <td>complejidad</td>
+            <td>hito</td>
+        </tr>
+    </thead>
+    <tbody>
+         {% if object_list %}
+         {% for vista in object_list %}
+        <tr>
+            <td>{{vista.IdEjercicio}}</td>
+            <td>{{vista.NombreProblema}}</td>
+            <td>{{vista.Skill1}}</td>
+            <td>{{vista.Skill2}}</td>
+            <td>{{vista.Skill3}}</td>
+            <td>{{vista.Skill4}}</td>
+            <td>{{vista.knowledge1}}</td>
+            <td>{{vista.knowledge2}}</td>
+            <td>{{vista.knowledge3}}</td>
+            <td>{{vista.knowledge4}}</td>
+            <td>{{vista.complejidad}}</td>
+            <td>{{vista.hito}}</td>  
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registros </h1>
+
+        {% endif %}
+        </tbody>
+        
+</table>
+{% endblock %}
