@@ -14,7 +14,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     
-
     <title>{% block title %}
       Titulo
     {% endblock title %}</title>
@@ -54,12 +53,11 @@
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profesor<span class="caret"></span></a>
                               <ul class="dropdown-menu" role="menu">
                                  {% if perms.cargadatos.view_lista %}
-                                 <li><a href="{url 'profesor/listacurso'}">Lista de curso</a></li>
+                                 <li><a href="{url 'profesor/cursos'}">Mis cursos</a></li>
                                  {% endif %}
                                  {% if perms.cargadatos.view_ejercicios %}
                                  <li><a href="{url 'profesor/informacionejercicios'}">Informacion de ejercicios</a></li>
                                  {% endif %}
-                                 <li><a href="{profesor/estadisticascursos}">Estadisticas de curso</a></li>
                                  
                                  <li><a href="{url 'profesor/estadisticasejercicios/'}">Estadisticas sobre ejercicios</a></li>
                               </ul>
@@ -69,7 +67,9 @@
                                 {% if user.is_staff %}
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Coordinador <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                <li><a href="{url 'coordinador/alumnossede'}">Alumnos de sede</a></li>
+                                {% if perms.cargadatos.view_profesor %}
+                                <li><a href="{url 'coordinador/profesores'}">Profesores curso</a></li>
+                                {% endif %}
                                 {% if perms.cargadatos.view_tablonejercicios %}
                                 <li><a href="{url 'coordinador/ejerciciostotales'}">Tablon de ejercicios</a></li>
                                 {% endif %}

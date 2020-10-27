@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.generic import TemplateView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import TablonEjercicios,Lista,Ejercicios,Estudiante
+from .models import TablonEjercicios,Lista,Ejercicios,Estudiante,Profesor,Seccion
 from django.db.models import Sum
 
 # ALUMNO
@@ -26,6 +26,7 @@ class profesor_lista_cursoView(LoginRequiredMixin,ListView):
     template_name = 'cargadatos/vista_lista.html'
 
 
+
 class profesor_informacion_ejerciciosView(LoginRequiredMixin,ListView):
     model= Ejercicios
     template_name = 'cargadatos/listado_ejercicios.html'
@@ -40,15 +41,20 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #context["qs"] = TablonEjercicios.objects.all()
-        context["qs"] = TablonEjercicios.objects.filter(IdEjercicio='1')
-        context["qs2"] = TablonEjercicios.objects.filter(IdEjercicio='3')
+        context["qs"] = TablonEjercicios.objects.filter(IdEjercicio='11')
+        context["qs2"] = TablonEjercicios.objects.filter(IdEjercicio='16')
         return context
 
-#VistaCoordinador Todos los alumnos de una sede 
-class alumnos_sede(LoginRequiredMixin,ListView):
-    model = Estudiante
-    queryset = Estudiante.objects.filter(sede = 'Casona')
-    template_name = 'cargadatos/AlumnosSede.html'
+class nrc_profesor(LoginRequiredMixin, ListView):
+    model = Seccion
+    queryset = Seccion.objects.filter(UsuarioUnab="p.schwarzenberg")
+    template_name = 'cargadatos/nrcprofesor.html'
+
+#VistaCoordinador Todos los profesores
+class profesores_todos(LoginRequiredMixin,ListView):
+    model = Profesor
+    queryset = Profesor.objects.all()
+    template_name = 'cargadatos/Profesores.html'
 
 
 #VistaCoordinador Todos los ejercicios de plataforma

@@ -9,9 +9,6 @@
             <td>UsuarioUnab</td>
             <td>Nombre</td>
             <td>Apellido</td>
-            <td>Sede</td>
-            <td>Carrera</td>
-            <td>Jornada</td>
         </tr>
     </thead>
     <tbody>
@@ -21,9 +18,9 @@
             <td>{{tablon.UsuarioUnab}}</td>
             <td>{{tablon.nombre}}</td>
             <td>{{tablon.apellido}}</td>
-            <td>{{tablon.sede}}</td>
-            <td>{{tablon.carrera}}</td>
-            <td>{{tablon.jornada}}</td>
+            <td>
+            <a class ="btn btn-primary btn-xs"href="{url 'profesor/cursos'}"> ver profesor </a>
+            </td>
             
         {% endfor %}
 
