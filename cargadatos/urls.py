@@ -4,8 +4,9 @@ from django.conf.urls import url,include
 from cargadatos.views import inicioview,estudiante_misestadistivasView,estudiante_vistaejercicios,profesor_estadisticasejerciciosView,profesor_lista_cursoView,profesor_informacion_ejerciciosView,profesor_estadisticas_cursosView,profesores_todos,lista_tablon,nrc_profesor
 from django.contrib.auth.views import logout_then_login
 
+
 urlpatterns = [
-    url('^$',inicioview),
+    url('^$',inicioview.as_view(),name="home"),
     url('estudiante/misestadisticas',estudiante_misestadistivasView.as_view(),name='misestadisticas'),
     url('estudiante/misejercicios', estudiante_vistaejercicios.as_view(), name='misejercicios'),
     url('profesor/estadisticasejercicios',profesor_estadisticasejerciciosView.as_view(), name='profeestadisticasejercicios'),
@@ -15,5 +16,7 @@ urlpatterns = [
     url('profesor/estadisticascursos',profesor_estadisticas_cursosView.as_view(),name='profeestadisticascursos'),
     url('coordinador/profesores',profesores_todos.as_view(), name = 'coordinadorprofesores'),
     url('coordinador/ejerciciostotales',lista_tablon.as_view(), name = 'coordinadortablon'),
+    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     url('logout/',logout_then_login, name= 'logout'),
 ]

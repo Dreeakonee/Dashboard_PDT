@@ -6,12 +6,12 @@ from .models import TablonEjercicios,Lista,Ejercicios,Estudiante,Profesor,Seccio
 from django.db.models import Sum
 
 # ALUMNO
-def inicioview(request):
-    return render(request,'cargadatos/inicio.html')
+class inicioview(LoginRequiredMixin,TemplateView):
+    def get(self, request, **kwargs):
+        return render(request, 'cargadatos/inicio.html')
 
 class estudiante_misestadistivasView(LoginRequiredMixin,TemplateView):
     template_name = "cargadatos/misestadisticas.html"
-
 
 #Vista Alumno sus ejercicios desarrollados 
 class estudiante_vistaejercicios(LoginRequiredMixin,ListView):
@@ -24,7 +24,7 @@ class profesor_lista_cursoView(LoginRequiredMixin,ListView):
     def get(self,request,**kwargs):
         nrcprofesor= kwargs["pk"]
         return render(request,'cargadatos/vista_lista.html',{'listacurso':Lista.objects.filter(nrc=nrcprofesor)})
-        
+
 
 class profesor_informacion_ejerciciosView(LoginRequiredMixin,ListView):
     model= Ejercicios
