@@ -21,11 +21,10 @@ class estudiante_vistaejercicios(LoginRequiredMixin,ListView):
 
 #PROFESOR
 class profesor_lista_cursoView(LoginRequiredMixin,ListView):
-    model=Lista
-    queryset = Lista.objects.filter(nrc = 9139)
-    template_name = 'cargadatos/vista_lista.html'
-
-
+    def get(self,request,**kwargs):
+        nrcprofesor= kwargs["pk"]
+        return render(request,'cargadatos/vista_lista.html',{'listacurso':Lista.objects.filter(nrc=nrcprofesor)})
+        
 
 class profesor_informacion_ejerciciosView(LoginRequiredMixin,ListView):
     model= Ejercicios
@@ -46,15 +45,15 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
         return context
 
 class nrc_profesor(LoginRequiredMixin, ListView):
-    model = Seccion
-    queryset = Seccion.objects.filter(UsuarioUnab="p.schwarzenberg")
-    template_name = 'cargadatos/nrcprofesor.html'
+     model = Seccion
+     queryset = Seccion.objects.filter(UsuarioUnab="p.schwarzenberg")
+     template_name = 'cargadatos/nrcprofesor.html'
 
 #VistaCoordinador Todos los profesores
 class profesores_todos(LoginRequiredMixin,ListView):
-    model = Profesor
-    queryset = Profesor.objects.all()
-    template_name = 'cargadatos/Profesores.html'
+     model = Profesor
+     queryset = Profesor.objects.all()
+     template_name = 'cargadatos/Profesores.html'
 
 
 #VistaCoordinador Todos los ejercicios de plataforma
