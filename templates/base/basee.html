@@ -43,7 +43,7 @@
                                 <li><a href="{url 'estudiante/misestadisticas/'}">Mis estadisticas</a></li>
                                 {% endif %}
                                 {% if perms.cargadatos.view_tablonejercicios %}
-                                <li><a href="{url 'estudiante/misejercicios/'}">Mis ejercicios</a></li>
+                                <li><a href="estudiante/misejercicios/">Mis ejercicios</a></li>
                                 {% endif %}
                               </ul>
                               {% endif %}
@@ -53,7 +53,7 @@
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profesor<span class="caret"></span></a>
                               <ul class="dropdown-menu" role="menu">
                                  {% if perms.cargadatos.view_lista %}
-                                 <li><a href="{url 'profesor/cursos'}">Mis cursos</a></li>
+                                 <li><a href="profesor/cursos">Mis cursos</a></li>
                                  {% endif %}
                                  {% if perms.cargadatos.view_ejercicios %}
                                  <li><a href="{url 'profesor/informacionejercicios'}">Informacion de ejercicios</a></li>

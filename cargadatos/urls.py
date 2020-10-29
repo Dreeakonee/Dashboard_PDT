@@ -11,9 +11,9 @@ urlpatterns = [
     url('profesor/estadisticasejercicios',profesor_estadisticasejerciciosView.as_view(), name='profeestadisticasejercicios'),
     url('profesor/cursos',nrc_profesor.as_view(),name='cursosprofesor'),
     url('profesor/listacurso/(?P<pk>\d+)',profesor_lista_cursoView.as_view(),name='listacurso'),
-    url('profesor/informacionejercicios/(?P<pk>\d+)',profesor_informacion_ejerciciosView.as_view(),name='profeinfoejercicios'),
+    url('profesor/informacionejercicios',profesor_informacion_ejerciciosView.as_view(),name='profeinfoejercicios'),
     url('profesor/estadisticascursos',profesor_estadisticas_cursosView.as_view(),name='profeestadisticascursos'),
-    url('coordinador/profesores', profesores_todos.as_view(), name = 'coordinadorprofesores'),
+    url('coordinador/profesores',profesores_todos.as_view(), name = 'coordinadorprofesores'),
     url('coordinador/ejerciciostotales',lista_tablon.as_view(), name = 'coordinadortablon'),
     url('logout/',logout_then_login, name= 'logout'),
 ]
