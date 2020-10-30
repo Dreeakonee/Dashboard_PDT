@@ -13,6 +13,7 @@ urlpatterns = [
     url('estudiante/misejercicios', estudiante_vistaejercicios.as_view(), name='misejercicios'),
     url('profesor/estadisticasejercicios',profesor_estadisticasejerciciosView.as_view(), name='profeestadisticasejercicios'),
     url('profesor/cursos',nrc_profesor.as_view(),name='cursosprofesor'),
+  #  url('profesor/cursoprofesor/(?P<usuariounab>[\w\.]+)/',lista_nrc_profesor.as_view(),name='vistacoordinadorprofesor'),
     url('profesor/listacurso/(?P<pk>\d+)',profesor_lista_cursoView.as_view(),name='listacurso'),
     url('profesor/informacionejercicios',profesor_informacion_ejerciciosView.as_view(),name='profeinfoejercicios'),
     url('profesor/estadisticascursos',profesor_estadisticas_cursosView.as_view(),name='profeestadisticascursos'),

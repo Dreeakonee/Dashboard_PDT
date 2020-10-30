@@ -23,9 +23,8 @@ class estudiante_estadisticasView(LoginRequiredMixin,TemplateView):
 
 #Vista Alumno sus ejercicios desarrollados 
 class estudiante_vistaejercicios(LoginRequiredMixin,ListView):
-    model= TablonEjercicios
-    queryset= TablonEjercicios.objects.filter(UsuarioUnab="g.manquilef")
-    template_name = 'cargadatos/vista_ejercicios_alumnos.html'
+   def get(self,request,**kwargs):
+        return render(request,'cargadatos/vista_ejercicios_alumnos.html',{'listaejerciciosa':TablonEjercicios.objects.filter(UsuarioUnab=request.user.username)})
 
 #PROFESOR
 class profesor_lista_cursoView(LoginRequiredMixin,ListView):
@@ -52,10 +51,14 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
         context["qs2"] = TablonEjercicios.objects.filter(IdEjercicio='16')
         return context
 
+'''class lista_nrc_profesor(LoginRequiredMixin, ListView):
+    def get(self,request,**kwargs):
+        listaprofesor= kwargs["usuariounab"]
+        return render(request,'cargadatos/nrcprofesor.html',{'listaprofe':Seccion.objects.filter(UsuarioUnab=listaprofesor)})'''
+
 class nrc_profesor(LoginRequiredMixin, ListView):
     def get(self,request,**kwargs):
         return render(request,'cargadatos/nrcprofesor.html',{'listaprofe':Seccion.objects.filter(UsuarioUnab=request.user.username)})
-
 
 #VistaCoordinador Todos los profesores
 class profesores_todos(LoginRequiredMixin,ListView):
