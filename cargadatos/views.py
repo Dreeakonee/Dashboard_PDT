@@ -15,6 +15,12 @@ class estudiante_misestadistivasView(LoginRequiredMixin,TemplateView):
         skills=TablonEjercicios.obtener_skills_estudiante(request.user.username)
         return render(request, 'cargadatos/misestadisticas.html',{'skills':skills[0:4]})
 
+class estudiante_estadisticasView(LoginRequiredMixin,TemplateView):
+    def get(self, request, **kwargs):
+        usuariounab= kwargs["usuariounab"]
+        skills=TablonEjercicios.obtener_skills_estudiante(usuariounab)
+        return render(request, 'cargadatos/misestadisticas.html',{'skills':skills[0:4]})
+
 #Vista Alumno sus ejercicios desarrollados 
 class estudiante_vistaejercicios(LoginRequiredMixin,ListView):
     model= TablonEjercicios
