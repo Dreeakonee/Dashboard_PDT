@@ -1,4 +1,5 @@
 from django.db import models
+from django.db import connection
 
 # Create your models here.
 
@@ -72,5 +73,31 @@ class TablonEjercicios(models.Model):
     IdEjercicio=models.ForeignKey(Ejercicios,on_delete=models.PROTECT)
     Puntaje=models.DecimalField(decimal_places=3, max_digits=20)
     def __str__(self):
-        
         return str(self.UsuarioUnab)
+    
+    def obtener_skills_estudiante(estudiante):
+        sql='''select sum(skill1),sum(skill2),sum(skill3),sum(skill4),
+        sum(knowledge1),sum(knowledge2),sum(knowledge3),sum(knowledge4)
+        from cargadatos_tablonejercicios, cargadatos_ejercicios
+        where UsuarioUnab_id='{0}'
+        and cargadatos_ejercicios.IdEjercicio=cargadatos_tablonejercicios.IdEjercicio_id'''
+        sql=sql.format(estudiante)
+        skills=[]
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            skills=cursor.fetchone()
+        return skills
+
+    def obtener_skills_nrc(nrc):
+        sql='''select sum(skill1),sum(skill2),sum(skill3),sum(skill4),
+        sum(knowledge1),sum(knowledge2),sum(knowledge3),sum(knowledge4)
+        from cargadatos_tablonejercicios, cargadatos_ejercicios, cargadatos_lista
+        where cargadatos_lista.nrc_id={0}
+        and cargadatos_tablonejercicios.UsuarioUnab_id=cargadatos_lista.UsuarioUnab_id
+        and cargadatos_ejercicios.IdEjercicio=cargadatos_tablonejercicios.IdEjercicio_id'''
+        sql=sql.format(nrc)
+        skills=[]
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            skills=cursor.fetchone()
+        return skills        

@@ -13,8 +13,8 @@
             data: {
                 labels: ['Recursividad', 'estructuras simples', 'ejercicios simples','estructuras combinadas'],
                 datasets: [{
-                    label: 'TITULO',
-                    data: [12,19,3,12],
+                    label: 'usuario',
+                    data: [{% for item in skills %} {{item}}, {% endfor %}],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -31,16 +31,16 @@
                         'rgba(153, 102, 255, 1)',
                         'rgba(255, 159, 64, 1)'
                     ],
-                    borderWidth: 1
                 }]
             },
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            dataset=data.datasets[0];
+                            return dataset.data[tooltipItem.datasetIndex];
                         }
-                    }]
+                    }
                 }
             }
         });

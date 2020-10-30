@@ -11,7 +11,9 @@ class inicioview(LoginRequiredMixin,TemplateView):
         return render(request, 'cargadatos/inicio.html')
 
 class estudiante_misestadistivasView(LoginRequiredMixin,TemplateView):
-    template_name = "cargadatos/misestadisticas.html"
+    def get(self, request, **kwargs):
+        skills=TablonEjercicios.obtener_skills_estudiante(request.user.username)
+        return render(request, 'cargadatos/misestadisticas.html',{'skills':skills[0:4]})
 
 #Vista Alumno sus ejercicios desarrollados 
 class estudiante_vistaejercicios(LoginRequiredMixin,ListView):
