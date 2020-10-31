@@ -58,10 +58,17 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
         context["qs2"] = TablonEjercicios.objects.filter(IdEjercicio='16')
         return context
 
+class profesor_lista(LoginRequiredMixin, ListView):
+    def get(self,request,**kwargs):
+        profe= kwargs["usuario"]
+        return render(request,'cargadatos/pruebaprofe.html',{'lista':Seccion.objects.filter(UsuarioUnab=profe)})
 
 class nrc_profesor(LoginRequiredMixin, ListView):
     def get(self,request,**kwargs):
         return render(request,'cargadatos/nrcprofesor.html',{'listaprofe':Seccion.objects.filter(UsuarioUnab=request.user.username)})
+
+
+
 
 #VistaCoordinador Todos los profesores
 class profesores_todos(LoginRequiredMixin,ListView):

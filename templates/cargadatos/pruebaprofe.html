@@ -1,0 +1,35 @@
+{% extends 'base/basee.html' %}
+
+{% block content%}
+
+
+<table class ="table table=bordered">
+    <thead>
+        <tr>
+            <td>Nombre Ramo</td>
+            <td>Codigo ramo</td>
+
+        </tr>
+    </thead>
+    <tbody>
+         {% if lista %}
+         {% for vista in lista %}
+        <tr>
+            <td>{{vista.nrc}}</td>
+            <td>{{vista.CodigoRamo}}</td>
+            <td>
+                <a class ="btn btn-primary btn-xs" href="profesor/listacurso/{{vista.nrc}}">ver curso</a>
+                </td>            
+                <td>
+                    <a class ="btn btn-primary btn-xs" href="profesor/estadisticascursos/{{vista.nrc}}">Estadisticas de curso</a>
+                    </td>    
+                    
+        {% endfor %}             
+        {% else %}
+        <h1>No hay registros </h1>
+
+        {% endif %}
+        </tbody>
+
+</table>
+{% endblock %}
