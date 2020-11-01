@@ -61,7 +61,7 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
 class profesor_lista(LoginRequiredMixin, ListView):
     def get(self,request,**kwargs):
         profe= kwargs["usuario"]
-        return render(request,'cargadatos/pruebaprofe.html',{'lista':Seccion.objects.filter(UsuarioUnab=profe)})
+        return render(request,'cargadatos/nrcprofesor.html',{'listaprofe':Seccion.objects.filter(UsuarioUnab=profe)})
 
 class nrc_profesor(LoginRequiredMixin, ListView):
     def get(self,request,**kwargs):
