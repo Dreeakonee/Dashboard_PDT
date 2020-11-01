@@ -27,8 +27,16 @@ class estudiante_misestadistivasView(LoginRequiredMixin,TemplateView):
 class estudiante_estadisticasView(LoginRequiredMixin,TemplateView):
     def get(self, request, **kwargs):
         usuariounab= kwargs["usuariounab"]
+        nrc_usuario=TablonEjercicios.obtener_nrc_estudiante(usuariounab)
         skills=TablonEjercicios.obtener_skills_estudiante(usuariounab)
-        return render(request, 'cargadatos/misestadisticas.html',{'skills':skills[0:4]})
+        skillsnrc=TablonEjercicios.obtener_skills_nrc(nrc_usuario[0])
+        return render(request, 'cargadatos/misestadisticas.html',{
+            'skills':skills[0:4],
+            'skillsnrc': skillsnrc[0:4]
+        })
+
+
+
 
 #Vista Alumno sus ejercicios desarrollados 
 class estudiante_vistaejercicios(LoginRequiredMixin,ListView):
@@ -58,9 +66,29 @@ class profesor_informacion_ejerciciosView(LoginRequiredMixin,ListView):
     model= Ejercicios
     template_name = 'cargadatos/listado_ejercicios.html'
 
+
+
+
+
+
+
 class profesor_estadisticas_cursosView(LoginRequiredMixin,TemplateView):
-    #queryset= TablonEjercicios.objects.filter(UsuarioUnab='nico')
-    template_name = 'cargadatos/estadisticascursos.html'
+    
+    def get(self, request, **kwargs):
+        nrc_curso_profe= kwargs["nrc_curso"]
+        #nrc_usuario=TablonEjercicios.obtener_nrc_estudiante(usuariounab)
+        #skills=TablonEjercicios.obtener_skills_estudiante(usuariounab)
+        skillsnrc=TablonEjercicios.obtener_skills_nrc(nrc_curso_profe)
+        return render(request, 'cargadatos/estadisticascursos.html',{
+            'skillsnrcprofe': skillsnrc[0:4]
+        })
+
+    
+
+
+
+
+
 
 class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
     #template_name='cargadatos/graficouno.html'

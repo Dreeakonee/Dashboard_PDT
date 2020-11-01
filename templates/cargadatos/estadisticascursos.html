@@ -5,10 +5,47 @@
 
 {% block scripts %}
 
+<script>
+    $(document).ready(function(){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['S1 Recursividad', 'S2 Estructuras simples', 'S3 Ejercicios simples','S4 Estructuras combinadas'],
+                datasets: [{
+                    label: 'CURSO1',
+                    data: [{% for item in skillsnrcprofe %} {{item}}, {% endfor %}],
+                    backgroundColor: 'rgba(00, 255, 00, 0.1)',
+                    borderColor: '#00FF00',
+                    borderWidth: 2
+                },
+                {
+                    label: 'OTROS CURSOS',
+                    data: [8,5,7,4],
+                    backgroundColor: 'rgba(255, 255, 00, 0.1)',
+                    borderColor: '#FFFF00',
+                    borderWidth: 2
+                }
+                ]
+            },
+            options: {
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            dataset=data.datasets[0];
+                            return dataset.data[tooltipItem.datasetIndex];
+                        }
+                    }
+                }
+            }
+        });
+    });
+    </script>
 {% endblock scripts %}
 
 {% block content %}
 
-OTRO MAS K FUNCIONA
+
+    <canvas id="myChart" ></canvas>
 
 {% endblock content %}
