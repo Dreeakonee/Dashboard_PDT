@@ -92,7 +92,7 @@ class TablonEjercicios(models.Model):
         sql='''select sum(skill1),sum(skill2),sum(skill3),sum(skill4),
         sum(knowledge1),sum(knowledge2),sum(knowledge3),sum(knowledge4)
         from cargadatos_tablonejercicios, cargadatos_ejercicios, cargadatos_lista
-        where cargadatos_lista.nrc_id={0}
+        where cargadatos_lista.nrc_id='{0}'
         and cargadatos_tablonejercicios.UsuarioUnab_id=cargadatos_lista.UsuarioUnab_id
         and cargadatos_ejercicios.IdEjercicio=cargadatos_tablonejercicios.IdEjercicio_id'''
         sql=sql.format(nrc)
@@ -100,4 +100,15 @@ class TablonEjercicios(models.Model):
         with connection.cursor() as cursor:
             cursor.execute(sql)
             skills=cursor.fetchone()
-        return skills        
+        return skills
+
+    def obtener_nrc_estudiante(nrc):
+        sql= '''select nrc_id
+                from cargadatos_lista
+                where cargadatos_lista.UsuarioUnab_id='{0}' '''
+        sql=sql.format(nrc)
+        nrcs=[]
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            nrcs=cursor.fetchone()
+        return nrcs

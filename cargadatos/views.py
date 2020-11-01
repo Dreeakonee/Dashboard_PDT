@@ -12,8 +12,17 @@ class inicioview(LoginRequiredMixin,TemplateView):
 
 class estudiante_misestadistivasView(LoginRequiredMixin,TemplateView):
     def get(self, request, **kwargs):
+
+        #nrc_usuario=TablonEjercicios.obtener_nrc_estudiante(request.user.username)
+        #only1_nrc_usuario=nrc_usuario[0:1]
+        nrc_usuario=TablonEjercicios.obtener_nrc_estudiante(request.user.username)
+        print(nrc_usuario)
         skills=TablonEjercicios.obtener_skills_estudiante(request.user.username)
-        return render(request, 'cargadatos/misestadisticas.html',{'skills':skills[0:4]})
+        skillsnrc=TablonEjercicios.obtener_skills_nrc(nrc_usuario[0])
+        return render(request, 'cargadatos/misestadisticas.html',{
+            'skills':skills[0:4],
+            'skillsnrc':skillsnrc[0:4]
+        })
 
 class estudiante_estadisticasView(LoginRequiredMixin,TemplateView):
     def get(self, request, **kwargs):
@@ -38,6 +47,11 @@ class profesor_lista_cursoView(LoginRequiredMixin,ListView):
     def get(self,request,**kwargs):
         nrcprofesor= kwargs["pk"]
         return render(request,'cargadatos/vista_lista.html',{'listacurso':Lista.objects.filter(nrc=nrcprofesor)})
+
+class profesor_lista(LoginRequiredMixin, ListView):
+    def get(self,request,**kwargs):
+        profe= kwargs["usuario"]
+        return render(request,'cargadatos/nrcprofesor.html',{'listaprofe':Seccion.objects.filter(UsuarioUnab=profe)})
 
 
 class profesor_informacion_ejerciciosView(LoginRequiredMixin,ListView):
