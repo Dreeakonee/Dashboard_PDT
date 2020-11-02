@@ -11,7 +11,7 @@
         var myChart = new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: ['Recursividad', 'estructuras simples', 'ejercicios simples','estructuras combinadas'],
+                labels: ['S1 Recursividad', 'S2 Estructuras simples', 'S3 Ejercicios simples','S4 Estructuras combinadas'],
                 datasets: [{
                     label: 'usuario',
                     data: [{% for item in skills %} {{item}}, {% endfor %}],

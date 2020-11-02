@@ -21,6 +21,8 @@ class estudiante_estadisticasView(LoginRequiredMixin,TemplateView):
         skills=TablonEjercicios.obtener_skills_estudiante(usuariounab)
         return render(request, 'cargadatos/misestadisticas.html',{'skills':skills[0:4]})
 
+
+
 #Vista Alumno sus ejercicios desarrollados 
 class estudiante_vistaejercicios(LoginRequiredMixin,ListView):
    def get(self,request,**kwargs):
@@ -61,7 +63,7 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
 class profesor_lista(LoginRequiredMixin, ListView):
     def get(self,request,**kwargs):
         profe= kwargs["usuario"]
-        return render(request,'cargadatos/pruebaprofe.html',{'lista':Seccion.objects.filter(UsuarioUnab=profe)})
+        return render(request,'cargadatos/nrcprofesor.html',{'listaprofe':Seccion.objects.filter(UsuarioUnab=profe)})
 
 class nrc_profesor(LoginRequiredMixin, ListView):
     def get(self,request,**kwargs):

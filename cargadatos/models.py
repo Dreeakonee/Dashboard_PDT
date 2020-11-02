@@ -101,3 +101,4 @@ class TablonEjercicios(models.Model):
             cursor.execute(sql)
             skills=cursor.fetchone()
         return skills        
+    
