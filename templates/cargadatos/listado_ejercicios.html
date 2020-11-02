@@ -25,7 +25,7 @@
          {% for vista in object_list %}
         <tr>
             <td>{{vista.IdEjercicio}}</td>
-            <td>{{vista.NombreProblema}}</td>
+            <td><a class ="btn btn-primary btn-xs" href= "profesor/estadisticasejercicios/{{vista.IdEjercicio}}">{{vista.NombreProblema}}</a></td>
             <td>{{vista.skill1}}</td>
             <td>{{vista.skill2}}</td>
             <td>{{vista.skill3}}</td>

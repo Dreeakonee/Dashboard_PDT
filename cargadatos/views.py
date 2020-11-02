@@ -96,7 +96,8 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #context["qs"] = TablonEjercicios.objects.all()
-        context["qs"] = TablonEjercicios.objects.filter(IdEjercicio='11')
+        numerito= kwargs["id_ejercicio"]
+        context["qs"] = TablonEjercicios.objects.filter(IdEjercicio=numerito)
         context["qs2"] = TablonEjercicios.objects.filter(IdEjercicio='16')
         return context
 
@@ -107,8 +108,8 @@ class nrc_profesor(LoginRequiredMixin, ListView):
 
 #VistaCoordinador Todos los profesores
 class profesores_todos(LoginRequiredMixin,ListView):
-     model = Profesor
-     queryset = Profesor.objects.all()
+     model = Seccion
+     queryset = Seccion.objects.all()
      template_name = 'cargadatos/Profesores.html'
 
 

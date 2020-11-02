@@ -6,29 +6,32 @@
 <table class ="table table=bordered">
     <thead>
         <tr>
-            <td>UsuarioUnab</td>
-            <td>Nombre</td>
-            <td>Apellido</td>
+            <td>NRC</td>
+            <td>Nombre del ramo</td>
+            <td>UsuarioProfesor</td>
+
         </tr>
     </thead>
     <tbody>
          {% if object_list %}
-         {% for tablon in object_list %}
+         {% for vista in object_list %}
         <tr>
-            <td>{{tablon.UsuarioUnab}}</td>
-            <td>{{tablon.nombre}}</td>
-            <td>{{tablon.apellido}}</td>
+            <td>{{vista.nrc}}</td>
+            <td>{{vista.CodigoRamo}}</td>
+            <td>{{vista.UsuarioUnab_id}}</td>
             <td>
-            <a class ="btn btn-primary btn-xs" href="profesor/cursosprofe/{{tablon.UsuarioUnab}}" >ver profesor </a>
-            </td>
-            
-        {% endfor %}
-
+                <a class ="btn btn-primary btn-xs" href="profesor/listacurso/{{vista.nrc}}">ver curso</a>
+                </td>            
+                <td>
+                    <a class ="btn btn-primary btn-xs" href="profesor/estadisticascursos/{{vista.nrc}}">Estadisticas de curso</a>
+                    </td>    
+                    
+        {% endfor %}             
         {% else %}
         <h1>No hay registros </h1>
 
         {% endif %}
         </tbody>
-        
+
 </table>
 {% endblock %}
