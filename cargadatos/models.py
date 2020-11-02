@@ -63,6 +63,21 @@ class Ejercicios(models.Model):
     def __str__(self):
         return self.NombreProblema
 
+    def obtener_nombre_ejercicio_por_id_ejercicio(id_ejercicio):
+        sql='''select NombreProblema
+                from cargadatos_ejercicios
+                where cargadatos_ejercicios.IdEjercicio = '{0}' '''
+        sql=sql.format(id_ejercicio)
+        nombre_ejercicio=[]
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            nombre_ejercicio=cursor.fetchone()
+        return nombre_ejercicio
+
+
+
+
+
 
 class TablonEjercicios(models.Model):
     IdTablonEjercicios=models.IntegerField(primary_key=True)

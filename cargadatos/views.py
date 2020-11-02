@@ -93,12 +93,16 @@ class profesor_estadisticas_cursosView(LoginRequiredMixin,TemplateView):
 class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
     #template_name='cargadatos/graficouno.html'
     template_name='cargadatos/estadisticasejercicios.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #context["qs"] = TablonEjercicios.objects.all()
         numerito= kwargs["id_ejercicio"]
         context["qs"] = TablonEjercicios.objects.filter(IdEjercicio=numerito)
-        context["qs2"] = TablonEjercicios.objects.filter(IdEjercicio='16')
+        context["nombre_ejercicio"]=Ejercicios.obtener_nombre_ejercicio_por_id_ejercicio(numerito)
+        #print(context["nombre_ejercicio"])
+        nombre_ejercicio=context["nombre_ejercicio"]
+        print(nombre_ejercicio)
         return context
 
 
