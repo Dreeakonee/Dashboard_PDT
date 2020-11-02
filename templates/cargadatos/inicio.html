@@ -8,4 +8,28 @@
 {% endblock scripts %}
 
 {% block content %}
+
+<div class ="content">
+   <div class = "animated fadeIn">
+        <div class = "row">
+            <div class = "col-lg-12">
+                {% block body %}
+                <div class="col-lg-12 prueba">
+                    <div class ="card bg-primary ">
+                        <div class ="card-body">
+                            <blockquote class = "blockquote mb-0 text-light text-center">
+                                <h1 class="text-light"> BIENVENIDO A TU DASHBOARD {{user.username| upper}}</h1>
+                                <span style = "color: # 009bdd;"> Facilitando la visualizacion de tu informacion </span>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                {% endblock body %}
+            </div>
+        </div>
+   </div>
+</div>
+
+<img class="center-block" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Universidad_Nacional_Andres_Bello_de_Chile.svg/1200px-Universidad_Nacional_Andres_Bello_de_Chile.svg.png" width="400" height="400"> 
+
 {% endblock content %}
