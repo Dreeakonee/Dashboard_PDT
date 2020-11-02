@@ -20,8 +20,8 @@ class estudiante_misestadistivasView(LoginRequiredMixin,TemplateView):
         skills=TablonEjercicios.obtener_skills_estudiante(request.user.username)
         skillsnrc=TablonEjercicios.obtener_skills_nrc(nrc_usuario[0])
         return render(request, 'cargadatos/misestadisticas.html',{
-            'skills':skills[0:4],
-            'skillsnrc':skillsnrc[0:4]
+            'skills':skills,
+            'skillsnrc':skillsnrc
         })
 
 class estudiante_estadisticasView(LoginRequiredMixin,TemplateView):
@@ -31,8 +31,8 @@ class estudiante_estadisticasView(LoginRequiredMixin,TemplateView):
         skills=TablonEjercicios.obtener_skills_estudiante(usuariounab)
         skillsnrc=TablonEjercicios.obtener_skills_nrc(nrc_usuario[0])
         return render(request, 'cargadatos/misestadisticas.html',{
-            'skills':skills[0:4],
-            'skillsnrc': skillsnrc[0:4]
+            'skills':skills,
+            'skillsnrc': skillsnrc
         })
 
 
@@ -79,8 +79,10 @@ class profesor_estadisticas_cursosView(LoginRequiredMixin,TemplateView):
         #nrc_usuario=TablonEjercicios.obtener_nrc_estudiante(usuariounab)
         #skills=TablonEjercicios.obtener_skills_estudiante(usuariounab)
         skillsnrc=TablonEjercicios.obtener_skills_nrc(nrc_curso_profe)
+        skillglobal=TablonEjercicios.obtener_skills_global()
         return render(request, 'cargadatos/estadisticascursos.html',{
-            'skillsnrcprofe': skillsnrc[0:4]
+            'skillsnrcprofe': skillsnrc,
+            'skillglobal':skillglobal
         })
 
     

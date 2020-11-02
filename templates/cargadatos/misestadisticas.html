@@ -11,7 +11,9 @@
         var myChart = new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: ['S1 Recursividad', 'S2 Estructuras simples', 'S3 Ejercicios simples','S4 Estructuras combinadas'],
+                labels: ['S1 Recursividad', 'S2 Estructuras de datos combinadas', 'S3 Estructuras de datos','S4 Algoritmo simple',
+                'K1 Clases', 'K2 Colecciones', 'K3 Control de Flujo Avanzado','K4 Control de Flujo Básico',
+                ],
                 datasets: [{
                     label: 'Estudiante',
                     data: [{% for item in skills %} {{item}}, {% endfor %}],
@@ -32,9 +34,14 @@
                 tooltips: {
                     callbacks: {
                         label: function(tooltipItem, data) {
-                            dataset=data.datasets[0];
-                            return dataset.data[tooltipItem.datasetIndex];
+                            dataset=data.datasets[tooltipItem.datasetIndex];
+                            return dataset.data[tooltipItem.index];
                         }
+                    }
+                },
+                scale: {
+                    ticks: {
+                        min: 0
                     }
                 }
             }

@@ -104,18 +104,47 @@ class TablonEjercicios(models.Model):
         return skills
 
     def obtener_skills_nrc(nrc):
-        sql='''select sum(skill1),sum(skill2),sum(skill3),sum(skill4),
+        sql='''
+        select sum(skill1),sum(skill2),sum(skill3),sum(skill4),
         sum(knowledge1),sum(knowledge2),sum(knowledge3),sum(knowledge4)
         from cargadatos_tablonejercicios, cargadatos_ejercicios, cargadatos_lista
-        where cargadatos_lista.nrc_id='{0}'
+        where cargadatos_lista.nrc_id={0}
         and cargadatos_tablonejercicios.UsuarioUnab_id=cargadatos_lista.UsuarioUnab_id
-        and cargadatos_ejercicios.IdEjercicio=cargadatos_tablonejercicios.IdEjercicio_id'''
+        and cargadatos_ejercicios.IdEjercicio=cargadatos_tablonejercicios.IdEjercicio_id
+        group by cargadatos_tablonejercicios.UsuarioUnab_id
+        '''
         sql=sql.format(nrc)
         skills=[]
         with connection.cursor() as cursor:
             cursor.execute(sql)
-            skills=cursor.fetchone()
-        return skills
+            skills=cursor.fetchall()
+        media=[0]*8
+        if len(skills)>0:
+            for dato in skills:
+                for i in range(8):
+                    media[i]=media[i]+dato[i]
+            media=list(map(lambda x: x*1/len(skills),media))
+        return media
+
+    def obtener_skills_global():
+        sql='''
+        select nrc_id
+        from cargadatos_lista
+		group by nrc_id
+        '''
+        nrcs_curso=[]
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            nrcs_curso=cursor.fetchall()
+        print(nrcs_curso)
+        skill_global=[0]*8
+        if len(nrcs_curso)>0:
+            for nrc in nrcs_curso:
+                skills_nrc=TablonEjercicios.obtener_skills_nrc(nrc[0])
+                for i in range(8):
+                    skill_global[i]=skill_global[i]+skills_nrc[i]
+            skill_global=list(map(lambda x: x*1/len(nrcs_curso),skill_global))
+        return skill_global
 
     def obtener_nrc_estudiante(nrc):
         sql= '''select nrc_id
