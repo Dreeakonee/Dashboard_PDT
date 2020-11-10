@@ -100,7 +100,24 @@ class profesor_estadisticasejerciciosView(TemplateView,TablonEjercicios):
         context = super().get_context_data(**kwargs)
         #context["qs"] = TablonEjercicios.objects.all()
         numerito= kwargs["id_ejercicio"]
-        context["qs"] = TablonEjercicios.objects.filter(IdEjercicio=numerito)
+
+        todos_puntajes=TablonEjercicios.obtener_puntaje_por_idejercicio(numerito)
+
+        buenas=[]
+        malas=[]
+        for puntaje in todos_puntajes:
+            if puntaje[0] >= 1:
+                buenas.append(puntaje)
+            else :
+                malas.append(puntaje)
+        print(buenas)
+        print(len(buenas))
+        print(malas)
+        print(len(malas))      
+        print(todos_puntajes)
+        print(len(todos_puntajes))
+        context["context_buenas"] = len(buenas)
+        context["context_malas"] = len(malas)
         context["nombre_ejercicio"]=Ejercicios.obtener_nombre_ejercicio_por_id_ejercicio(numerito)
         #print(context["nombre_ejercicio"])
         nombre_ejercicio=context["nombre_ejercicio"]

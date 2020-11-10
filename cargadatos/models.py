@@ -156,3 +156,14 @@ class TablonEjercicios(models.Model):
             cursor.execute(sql)
             nrcs=cursor.fetchone()
         return nrcs
+    
+    def obtener_puntaje_por_idejercicio(idejercicio):
+        sql='''select cargadatos_tablonejercicios.Puntaje
+                from cargadatos_tablonejercicios
+                where cargadatos_tablonejercicios.IdEjercicio_id ="{0}"'''
+        sql=sql.format(idejercicio)
+        puntajes=[]
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            puntajes=cursor.fetchall()
+        return puntajes
