@@ -10,7 +10,7 @@ $(document).ready(function(){
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Puntaje ejercicio {{nombre_ejercicio}} por alumnos"],
+            labels: ["Cantidad de ejercicios {{nombre_ejercicio}} buenos y malos"],
             datasets: [{
                 label: 'Buenas',
                 data: [{{context_buenas}}],
