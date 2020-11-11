@@ -95,7 +95,9 @@ class TablonEjercicios(models.Model):
         sum(knowledge1),sum(knowledge2),sum(knowledge3),sum(knowledge4)
         from cargadatos_tablonejercicios, cargadatos_ejercicios
         where UsuarioUnab_id='{0}'
-        and cargadatos_ejercicios.IdEjercicio=cargadatos_tablonejercicios.IdEjercicio_id'''
+        and cargadatos_ejercicios.IdEjercicio=cargadatos_tablonejercicios.IdEjercicio_id
+        and cargadatos_tablonejercicios.Puntaje>0
+        '''
         sql=sql.format(estudiante)
         skills=[]
         with connection.cursor() as cursor:
@@ -111,6 +113,7 @@ class TablonEjercicios(models.Model):
         where cargadatos_lista.nrc_id={0}
         and cargadatos_tablonejercicios.UsuarioUnab_id=cargadatos_lista.UsuarioUnab_id
         and cargadatos_ejercicios.IdEjercicio=cargadatos_tablonejercicios.IdEjercicio_id
+        and cargadatos_tablonejercicios.Puntaje>0
         group by cargadatos_tablonejercicios.UsuarioUnab_id
         '''
         sql=sql.format(nrc)
