@@ -48,7 +48,7 @@ class Lista(models.Model):
         return str(self.nrc)
 
 class Ejercicios(models.Model):
-    IdEjercicio=models.IntegerField(primary_key=True)
+    IdEjercicio=models.CharField(primary_key=True,max_length=50)
     NombreProblema=models.CharField(max_length=50)
     skill1=models.BooleanField()
     skill2=models.BooleanField()
@@ -84,7 +84,7 @@ class TablonEjercicios(models.Model):
     UsuarioUnab=models.ForeignKey(Estudiante,null=True,on_delete=models.CASCADE)
     dia=models.CharField(max_length=20)
     mes=models.CharField(max_length=20)
-    año=models.CharField(max_length=20)
+    anio=models.CharField(max_length=20)
     IdEjercicio=models.ForeignKey(Ejercicios,on_delete=models.PROTECT)
     Puntaje=models.DecimalField(decimal_places=3, max_digits=20)
     def __str__(self):

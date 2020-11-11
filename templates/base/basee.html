@@ -39,12 +39,9 @@
                               {% if perms.cargadatos.view_estudiante %}
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estudiante <span class="caret"></span></a>
                               <ul class="dropdown-menu" role="menu">
-                                {% if perms.cargadatos.view_ejercicios %}
                                 <li><a href="/estudiante/misestadisticas">Mis estadisticas</a></li>
-                                {% endif %}
-                                {% if perms.cargadatos.view_tablonejercicios %}
                                 <li><a href="/estudiante/misejercicios">Mis ejercicios</a></li>
-                                {% endif %}
+
                               </ul>
                               {% endif %}
                             </li>
@@ -52,27 +49,21 @@
                               {% if perms.cargadatos.view_profesor %}
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profesor<span class="caret"></span></a>
                               <ul class="dropdown-menu" role="menu">
-                                 {% if perms.cargadatos.view_lista %}
                                  <li><a href="/profesor/cursos">Mis cursos</a></li>
-                                 {% endif %}
-                                 {% if perms.cargadatos.view_ejercicios %}
                                  <li><a href="/profesor/informacionejercicios">Informacion de ejercicios</a></li>
-                                 {% endif %}
+
                                  
                                  
                               </ul>
                               {% endif %}
                              </li>
                             <li class="dropdown">
-                                {% if user.is_staff %}
+                              {% if perms.cargadatos.view_seccion %}
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Coordinador <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                {% if perms.cargadatos.view_profesor %}
                                 <li><a href="/coordinador/profesores">Secciones</a></li>
-                                {% endif %}
-                                {% if perms.cargadatos.view_tablonejercicios %}
                                 <li><a href="/coordinador/ejerciciostotales">Tablon de ejercicios</a></li>
-                                {% endif %}
+
                                 </ul>
                                 {% endif %}
                             </li>
